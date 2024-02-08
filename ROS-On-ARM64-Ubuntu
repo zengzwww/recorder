@@ -1,0 +1,103 @@
+在ROS/Installation页面选择ROS Noetic Ninjemys，这个是ubuntu20.04用的
+
+更换清华源, 在https://mirrors.tuna.tsinghua.edu.cn/找到ubuntu-ports点进去, ubuntu选择20.04LTS
+$ sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
+$ sudo vi /etc/apt/sources.list
+添加如下内容:
+
+
+
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-backports main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-proposed main restricted universe multiverse
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-proposed main restricted universe multiverse
+
+
+设置sources.list
+$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+安装curl
+$ sudo apt install curl
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ curl : Depends: libcurl4 (= 7.68.0-1ubuntu2.13) but 7.68.0-1ubuntu2.12 is to be installed
+E: Unable to correct problems, you have held broken packages.
+
+解决办法:
+$ sudo apt-get install aptitude
+$ sudo aptitude install curl
+
+设置keys
+$ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+gpg: no valid OpenPGP data found.
+
+解决办法:
+$ sudo mv /etc/hosts /etc/hosts.bak
+$ sudo vi /etc/hosts
+185.199.108.133 raw.githubusercontent.com
+185.199.109.133 raw.githubusercontent.com
+185.199.110.133 raw.githubusercontent.com
+185.199.111.133 raw.githubusercontent.com
+
+$ curl -O https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc
+$ sudo apt-key add ros.asc
+OK
+
+确保Debian包索引是最新的
+$ sudo apt update
+
+安装完全版本的ROS
+$ sudo apt install ros-noetic-desktop-full
+
+source一下这个脚本
+$ echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+$ source ~/.bashrc
+
+安装rosdep及其依赖包
+$ sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+
+初始化rosdep, rosdep update报time out的错误没其他办法, 只有反复试
+$ sudo rosdep init
+$ rosdep update
+reading in sources list data from /etc/ros/rosdep/sources.list.d
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/osx-homebrew.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/base.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/python.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/rosdep/ruby.yaml
+Hit https://raw.githubusercontent.com/ros/rosdistro/master/releases/fuerte.yaml
+Query rosdistro index https://raw.githubusercontent.com/ros/rosdistro/master/index-v4.yaml
+Skip end-of-life distro "ardent"
+Skip end-of-life distro "bouncy"
+Skip end-of-life distro "crystal"
+Skip end-of-life distro "dashing"
+Skip end-of-life distro "eloquent"
+Add distro "foxy"
+Add distro "galactic"
+Skip end-of-life distro "groovy"
+Add distro "humble"
+Skip end-of-life distro "hydro"
+Skip end-of-life distro "indigo"
+Skip end-of-life distro "jade"
+Skip end-of-life distro "kinetic"
+Skip end-of-life distro "lunar"
+Add distro "melodic"
+Add distro "noetic"
+Add distro "rolling"
+updated cache in /home/blueberry/.ros/rosdep/sources.cache
