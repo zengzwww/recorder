@@ -96,3 +96,10 @@ pip3 install opencv-python-headless -i https://mirrors.aliyun.com/pypi/simple/
 tritonserver --model-repository=/models
 tritonserver --cache-config local,size=1048576 --model-repository=/models
 ```
+
+
+```bash
+perf_analyzer -m face_ensemble -b 1 --shape images:1,1080,1920,3 --concurrency-range 2:16:2 --percentile=95
+perf_analyzer -m face_ensemble -a -b 1 --shape images:1,1080,1920,3 --concurrency-range 2:16:2 --percentile=95
+perf_analyzer -m face_ensemble -a -b 1 --shared-memory system --shape images:1,1080,1920,3 --concurrency-range 2:16:2 --percentile=95
+```
