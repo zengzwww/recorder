@@ -92,7 +92,7 @@ sudo docker run --gpus=all -it --shm-size=256m --ipc=host --rm -p8000:8000 -p800
 ```
 
 ```bash
-pip3 install opencv-python-headless
+pip3 install opencv-python-headless -i https://mirrors.aliyun.com/pypi/simple/
 tritonserver --model-repository=/models
 tritonserver --cache-config local,size=1048576 --model-repository=/models
 ```
