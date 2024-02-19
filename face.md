@@ -94,7 +94,10 @@ sudo docker run --gpus=all -it --shm-size=256m --ipc=host --rm -p8000:8000 -p800
 ```bash
 pip3 install opencv-python-headless -i https://mirrors.aliyun.com/pypi/simple/
 tritonserver --model-repository=/models
-tritonserver --cache-config local,size=1048576 --model-repository=/models
+```
+
+```bash
+perf_analyzer -m fd_2.0.1 -b 1 --shared-memory system --output-shared-memory-size 655360 --shape input0:1,3,512,512 --concurrency-range 2:16:2 --percentile=95
 ```
 
 
