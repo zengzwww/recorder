@@ -97,6 +97,10 @@ tritonserver --model-repository=/models
 ```
 
 ```bash
+pip install tritonclient[all]
+```
+
+```bash
 perf_analyzer -m fd_2.0.1 -b 1 --shared-memory system --output-shared-memory-size 655360 --shape input0:1,3,512,512 --concurrency-range 2:16:2 --percentile=95
 ```
 
