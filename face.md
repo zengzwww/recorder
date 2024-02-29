@@ -110,3 +110,5 @@ perf_analyzer -m face_ensemble -b 1 --shape images:1,1080,1920,3 --concurrency-r
 perf_analyzer -m face_ensemble -a -b 1 --shape images:1,1080,1920,3 --concurrency-range 2:16:2 --percentile=95
 perf_analyzer -m face_ensemble -a -b 1 --shared-memory system --shape images:1,1080,1920,3 --concurrency-range 2:16:2 --percentile=95
 ```
+
+[threadpoolexecutor-pipeline](https://superfastpython.com/threadpoolexecutor-pipeline/)
