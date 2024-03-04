@@ -25,12 +25,12 @@ ffmpeg -i /home/dlyrm/Downloads/gold-rush.mp4 -metadata:s:v rotate="-90" -codec 
 ffmpeg -i /home/dlyrm/Downloads/gold-rush.mp4 -metadata:s:v rotate="90" -codec copy /home/dlyrm/Downloads/gold-rush_counterclockwise.mp4
 ```
 
-用ffprobe检测旋转元数据, 显示90, 不是-90, 表示显示时需要逆时针旋转90度才对
+用ffprobe检测旋转元数据, 显示90, 不是-90
 ```bash
 ffprobe -loglevel error -select_streams v:0 -show_entries stream_tags=rotate -of default=nw=1:nk=1 -i /home/dlyrm/Downloads/gold-rush_clockwise.mp4
 ```
 
-用ffprobe检测旋转元数据, 显示270, 不是90, 表示显示时需要逆时针旋转270度才对
+用ffprobe检测旋转元数据, 显示270, 不是90
 ```bash
 ffprobe -loglevel error -select_streams v:0 -show_entries stream_tags=rotate -of default=nw=1:nk=1 -i /home/dlyrm/Downloads/gold-rush_counterclockwise.mp4
 ```
