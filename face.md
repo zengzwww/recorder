@@ -102,6 +102,11 @@ sudo docker commit 49adccc602bb nvcr.io/nvidia/tritonserver:23.10-py3-face
 sudo docker save -o tritonserver.tar nvcr.io/nvidia/tritonserver:23.10-py3-face
 ```
 
+保存的时候压缩一下
+```bash
+docker export 5c36fcb468ef | gzip > tritonserver.tar.gz
+```
+
 ```bash
 pip install tritonclient[all]
 pip install tritonclient\[all\]
