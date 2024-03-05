@@ -112,6 +112,11 @@ docker export 5c36fcb468ef | gzip > tritonserver.tar.gz
 cat tritonserver.tar.gz | docker import - nvcr.io/nvidia/tritonserver:23.10-py3-face
 ```
 
+启动的方式比较特别, [需要指定tritonserver的绝对路径](https://github.com/moby/moby/issues/1826)
+```bash
+docker run -d --gpus=all -it --shm-size=256m --ipc=host --rm -p8000:8000 -p8001:8001 -p8002:8002 -v $(pwd)/model_repository:/models nvcr.io/nvidia/tritonserver:23.10-py3-face /opt/tritonserver/bin/tritonserver --model-repository=/models
+```
+
 ```bash
 pip install tritonclient[all]
 pip install tritonclient\[all\]
