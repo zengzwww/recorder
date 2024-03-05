@@ -96,6 +96,12 @@ pip3 install opencv-python-headless -i https://mirrors.aliyun.com/pypi/simple/
 tritonserver --model-repository=/models
 ```
 
+保存镜像文件
+```bash
+sudo docker commit 49adccc602bb nvcr.io/nvidia/tritonserver:23.10-py3-face
+sudo docker save -o tritonserver.tar nvcr.io/nvidia/tritonserver:23.10-py3-face
+```
+
 ```bash
 pip install tritonclient[all]
 ```
