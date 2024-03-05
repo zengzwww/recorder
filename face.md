@@ -107,6 +107,11 @@ sudo docker save -o tritonserver.tar nvcr.io/nvidia/tritonserver:23.10-py3-face
 docker export 5c36fcb468ef | gzip > tritonserver.tar.gz
 ```
 
+加载这个压缩了的镜像(直接用: docker import tritonserver.tar.gz, 导入的镜像没有名字, 也没有标签)
+```bash
+cat tritonserver.tar.gz | docker import - nvcr.io/nvidia/tritonserver:23.10-py3-face
+```
+
 ```bash
 pip install tritonclient[all]
 pip install tritonclient\[all\]
