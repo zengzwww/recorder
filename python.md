@@ -82,3 +82,7 @@ export CUDA_HOME=$CONDA_PREFIX
 ## conda环境下：conda nvcc: No such file or directory
 
 安装cudatoolkit-dev，参考[stackoverflow](https://stackoverflow.com/questions/56470424/nvcc-missing-when-installing-cudatoolkit)
+
+## Module level import not at top of file
+
+[参考](https://stackoverflow.com/questions/36827962/pep8-import-not-at-top-of-file-with-sys-path)
