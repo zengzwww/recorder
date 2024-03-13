@@ -86,3 +86,12 @@ export CUDA_HOME=$CONDA_PREFIX
 ## Module level import not at top of file
 
 [参考](https://stackoverflow.com/questions/36827962/pep8-import-not-at-top-of-file-with-sys-path)
+
+## pip install报错：No space left on device
+
+参考[博客](https://naoko.github.io/pip-install-no-space-left/)
+
+```
+export TMPDIR=/bigass/space
+pip install ...
+```
