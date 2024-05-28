@@ -87,3 +87,9 @@ sudo apt-get install arp-scan
 sudo arp-scan -I wlo1 --localnet
 ```
 将wlo1替换为用ifconfig查出来的网卡名
+
+## 解码中文zip压缩包
+
+```bash
+unar xxx.zip
+```
