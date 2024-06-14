@@ -27,3 +27,11 @@ lsof -i:6006
 ```bash
 kill -9 xxx
 ```
+
+## got an unexpected keyword argument including_default_value_fields
+
+```bash
+pip install tensorboard==2.12.0
+```
+
+[see](https://blog.csdn.net/llf000000/article/details/137336232)
