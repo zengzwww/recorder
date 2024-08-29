@@ -95,3 +95,20 @@ export CUDA_HOME=$CONDA_PREFIX
 export TMPDIR=/bigass/space
 pip install ...
 ```
+
+## Available platform plugins are: xcb, eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, webgl
+
+```text
+2024-08-29 10:09:52,210 [INFO   ] __init__:get_config:67- Loading config file from: /home/industai/.labelmerc
+QObject::moveToThread: Current thread (0x2247af0) is not the object's thread (0x38cdc00).
+Cannot move to target thread (0x2247af0)
+
+qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "/home/industai/miniconda3/envs/open-mmlab/lib/python3.8/site-packages/cv2/qt/plugins" even though it was found.
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+
+Available platform plugins are: xcb, eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, webgl.
+
+已放弃 (核心已转储)
+```
+
+先安装opencv-python, 再安装opencv-python-headless, 可解决该问题.
