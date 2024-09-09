@@ -46,3 +46,5 @@ Could not handshake: Error in the pull function. [IP: 185.199.111.153 443]
 ```bash
 sudo -E apt-get update
 ```
+
+安装NVIDIA Container Toolkit参考[Installing the NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
