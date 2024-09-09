@@ -26,3 +26,23 @@ systemctl show --property=Environment docker
 ```
 
 see [here](https://linux.do/t/topic/111276)
+
+## Install docker in Ubuntu20.04
+
+参考链接: [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
+执行第一步就报错
+
+```bash
+sudo apt-get update
+```
+
+```text
+Could not handshake: Error in the pull function. [IP: 185.199.111.153 443]
+```
+
+解决办法参考: [Unable to install nvidia-docker on Ubuntu 18.04](https://github.com/NVIDIA/nvidia-docker/issues/1296)
+
+```bash
+sudo -E apt-get update
+```
