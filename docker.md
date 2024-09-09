@@ -48,3 +48,5 @@ sudo -E apt-get update
 ```
 
 安装NVIDIA Container Toolkit参考[Installing the NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+安装triton server, 参考[Triton Inference Server](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver)和[Triton Inference Server Release 23.10](https://docs.nvidia.com/deeplearning/triton-inference-server/release-notes/rel-23-10.html#rel-23-10)
