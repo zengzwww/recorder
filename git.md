@@ -112,3 +112,7 @@ git clone -c https.proxy="127.0.0.1:7890" https://github.com/0x90d/videoduplicat
 ## 切换子模块的分支
 
 参考[这里](https://stackoverflow.com/questions/1777854/how-can-i-specify-a-branch-tag-when-adding-a-git-submodule)
+
+## 修改历史commit的作者信息
+
+参考[这里](https://stackoverflow.com/questions/3042437/how-can-i-change-the-commit-author-for-a-single-commit)
