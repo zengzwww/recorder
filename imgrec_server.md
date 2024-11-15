@@ -37,5 +37,11 @@ docker run -it --privileged --gpus=all --shm-size=256m --ipc=host --rm -p5000:50
 
 也可指定host和port
 ```bash
-docker run -it --privileged --gpus=all --shm-size=256m --ipc=host --rm -p8000:8000 industai:v1.0 --port 8000
+docker run -it --privileged --gpus=all --shm-size=256m --ipc=host --rm -p5000:5000 industai:v1.0 --port 5000
+```
+
+- 保存镜像
+
+```bash
+docker save -o industai-1.0.tar industai:v1.0
 ```
