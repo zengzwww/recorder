@@ -40,6 +40,11 @@ docker run -it --privileged --gpus=all --shm-size=256m --ipc=host --rm -p5000:50
 docker run -it --privileged --gpus=all --shm-size=256m --ipc=host --rm -p5000:5000 industai:v1.0 --port 5000
 ```
 
+如果想绕过默认的入口，可执行
+```bash
+docker run -it --privileged --gpus=all --shm-size=256m --ipc=host --rm -p5000:5000 --entrypoint bash industai:v1.0
+```
+
 - 保存镜像
 
 ```bash
