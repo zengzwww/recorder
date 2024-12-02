@@ -97,3 +97,48 @@ deb http://th.archive.ubuntu.com/ubuntu jammy main
 sudo apt update
 sudo apt install libc6
 ```
+
+#### 不稳定代码备份
+
+线程池
+```text
+  if (glass.patches.size() > 0 && shell.patches.size() > 0) {
+    std::vector<std::future<int>> results;
+    results.emplace_back(pool.enqueue([this, &glass] {
+      int status = glass_classifier->run_classify(
+          glass.patches, glass_classifier_params, glass.classify_results);
+      return status;
+    }));
+
+    results.emplace_back(pool.enqueue([this, &shell] {
+      int status = shell_classifier->run_classify(
+          shell.patches, shell_classifier_params, shell.classify_results);
+      return status;
+    }));
+
+    for (auto &&result : results) {
+      if (result.get()) {
+        LOG_ERROR("fail to running classifier");
+        return false;
+      }
+    }
+  } else {
+    if (glass.patches.size() > 0) {
+      int status = glass_classifier->run_classify(
+          glass.patches, glass_classifier_params, glass.classify_results);
+      if (status) {
+        LOG_ERROR("fail to running glass classifier");
+        return false;
+      }
+    }
+
+    if (shell.patches.size() > 0) {
+      int status = shell_classifier->run_classify(
+          shell.patches, shell_classifier_params, shell.classify_results);
+      if (status) {
+        LOG_ERROR("fail to running shell classifier");
+        return false;
+      }
+    }
+  }
+```
