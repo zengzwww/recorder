@@ -6,7 +6,7 @@ python train.py \
 --weights yolov5s.pt \
 --cfg yolov5s.yaml \
 --data fangtian.yaml \
---epochs 200 \
+--epochs 100 \
 --batch-size 24 \
 --imgsz 1280 \
 --device 2,3 \
