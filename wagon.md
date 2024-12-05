@@ -27,3 +27,13 @@ wagon get -u ./...
 wagon do
 wagon do build_amd64
 ```
+
+## 查看镜像中的文件
+
+- 将镜像报错为本地文件
+```bash
+docker save -o image.tar harbor.innoai.tech/ai/electric-power/negative_detection:dev-CUDA-9428b9fd-amd64
+```
+
+- 解压image.tar到image
+- 解压image/blobs/sha256/8f588381b45cb4831e2885a27a8e38097e0169171851bad29c5447a05fe81574，即可在image/blobs/sha256/8f588381b45cb4831e2885a27a8e38097e0169171851bad29c5447a05fe81574目录下看到库文件
