@@ -37,3 +37,9 @@ docker save -o image.tar harbor.innoai.tech/ai/electric-power/negative_detection
 
 - 解压image.tar到image
 - 解压image/blobs/sha256/8f588381b45cb4831e2885a27a8e38097e0169171851bad29c5447a05fe81574，即可在image/blobs/sha256/8f588381b45cb4831e2885a27a8e38097e0169171851bad29c5447a05fe81574目录下看到库文件
+
+## 看看模型是否是GPU版
+
+```bash
+python -c "import torch;model=torch.jit.load('detection-meter-GPU.torchscript');print(next(model.parameters()).device)"
+```
