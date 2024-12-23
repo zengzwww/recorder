@@ -9,5 +9,5 @@ yolo detect train model=yolov8m.pt data=ultralytics/cfg/datasets/cabinet.yaml ep
 ## detect
 
 ```bash
-yolo detect predict model=../../experiments/cabinet_det/m640/weights/best.pt source=../../data/substation/cabinet/yolo/cabinet/images/val/ conf=0.25 iou=0.7 imgsz=640 project=../../experiments/cabinet_det/ name=predict save_txt=True
+yolo detect predict model=../../experiments/cabinet_det/m640/weights/best.pt source=../../data/substation/cabinet/yolo/cabinet/images/val/ conf=0.25 iou=0.7 imgsz=640 project=../../experiments/cabinet_det/ name=m640_pred save_txt=True
 ```
