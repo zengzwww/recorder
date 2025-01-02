@@ -37,3 +37,15 @@ sudo systemctl start mongod
 ```bash
 FIFTYONE_DATABASE_URI=mongodb://127.0.0.1:27017 fiftyone convert --input-dir data/substation/cabinet/yolo/3.0 --input-type fiftyone.types.YOLOv5Dataset --output-dir data/substation/cabinet/coco/3.0 --output-type fiftyone.types.COCODetectionDataset
 ```
+
+## 创建数据集
+
+```bash
+FIFTYONE_DATABASE_URI=mongodb://127.0.0.1:27017 fiftyone datasets create --name cabinet --dataset-dir data/substation/cabinet/coco/3.0 --type fiftyone.types.COCODetectionDataset
+```
+
+## 可视化数据集
+
+```bash
+FIFTYONE_DATABASE_URI=mongodb://127.0.0.1:27017 fiftyone app launch cabinet
+```
