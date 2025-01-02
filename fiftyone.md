@@ -35,7 +35,7 @@ sudo systemctl start mongod
 
 1. YOLOv5 to COCO
 ```bash
-FIFTYONE_DATABASE_URI=mongodb://127.0.0.1:27017 fiftyone convert --input-dir data/substation/cabinet/yolo/3.0 --input-type fiftyone.types.YOLOv5Dataset --output-dir data/substation/cabinet/coco/3.0 --output-type fiftyone.types.COCODetectionDataset
+FIFTYONE_DATABASE_URI=mongodb://127.0.0.1:27017 fiftyone convert --input-dir data/substation/cabinet/yolo/3.0 --input-type fiftyone.types.YOLOv5Dataset --output-dir data/substation/cabinet/coco/3.0 --output-type fiftyone.types.COCODetectionDataset --input-kwargs split=val --output-kwargs split=val
 ```
 
 ## 创建数据集
