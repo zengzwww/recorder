@@ -36,6 +36,9 @@ _base_.val_dataloader['dataset']['data_prefix'] = dict(img='val/')
 
 _base_.val_evaluator['ann_file'] = data_root + 'annotations/val.json'
 
+_base_.test_dataloader = _base_.val_dataloader
+_base_.test_evaluator = _base_.val_evaluator
+
 ######################################################################
 
 load_from = '/data/zengzw/models/mmdetection/detectors_cascade_rcnn_r50_1x_coco-32a10ba0.pth'
