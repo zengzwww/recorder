@@ -2,6 +2,12 @@
 
 ## DetectorRS
 
+### Trainning
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1 ./tools/dist_train.sh configs/detectors/oilleak.py 2 --work-dir ../../experiments/oilleak --auto-scale-lr
+```
+
 ```text
 Done (t=0.16s)
 creating index...
