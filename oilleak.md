@@ -78,7 +78,8 @@ Training:
 CUDA_VISIBLE_DEVICES=0,1 ./tools/dist_train.sh configs/detectors/oilleak.py 2 --work-dir ../../experiments/oilleak --auto-scale-lr
 ```
 
-Error:
+- Error 1
+
 ```text
 Done (t=0.16s)
 creating index...
@@ -196,6 +197,124 @@ Root Cause (first observed failure):
 ```
 
 Solutions: [1](https://github.com/open-mmlab/mmdetection/issues/10161) and [2](https://mmdetection.readthedocs.io/en/latest/advanced_guides/customize_dataset.html#modify-the-config-file-for-using-the-customized-dataset)
+
+- Error 2
+
+```text
+Traceback (most recent call last):
+  File "./tools/train.py", line 121, in <module>
+    main()
+  File "./tools/train.py", line 117, in main
+    runner.train()
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1777, in train
+    model = self.train_loop.run()  # type: ignore
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/loops.py", line 98, in run
+    self.run_epoch()
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/loops.py", line 115, in run_epoch
+    self.run_iter(idx, data_batch)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/loops.py", line 131, in run_iter
+    outputs = self.runner.model.train_step(
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 121, in train_step
+    losses = self._run_forward(data, mode='loss')
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 161, in _run_forward
+    results = self(**data, mode=mode)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 1156, in forward
+    output = self._run_ddp_forward(*inputs, **kwargs)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 1110, in _run_ddp_forward
+    return module_to_run(*inputs[0], **kwargs[0])  # type: ignore[index]
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data/zengzw/codes/mmdetection/mmdet/models/detectors/base.py", line 92, in forward
+    return self.loss(inputs, data_samples)
+  File "/data/zengzw/codes/mmdetection/mmdet/models/detectors/two_stage.py", line 190, in loss
+    roi_losses = self.roi_head.loss(x, rpn_results_list,
+  File "/data/zengzw/codes/mmdetection/mmdet/models/roi_heads/htc_roi_head.py", line 288, in loss
+    gt_semantic_segs = [
+  File "/data/zengzw/codes/mmdetection/mmdet/models/roi_heads/htc_roi_head.py", line 289, in <listcomp>
+    data_sample.gt_sem_seg.sem_seg
+  File "/data/zengzw/codes/mmdetection/mmdet/structures/det_data_sample.py", line 213, in gt_sem_seg
+    return self._gt_sem_seg
+AttributeError: 'DetDataSample' object has no attribute '_gt_sem_seg'
+Traceback (most recent call last):
+  File "./tools/train.py", line 121, in <module>
+    main()
+  File "./tools/train.py", line 117, in main
+    runner.train()
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/runner.py", line 1777, in train
+    model = self.train_loop.run()  # type: ignore
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/loops.py", line 98, in run
+    self.run_epoch()
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/loops.py", line 115, in run_epoch
+    self.run_iter(idx, data_batch)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/runner/loops.py", line 131, in run_iter
+    outputs = self.runner.model.train_step(
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 121, in train_step
+    losses = self._run_forward(data, mode='loss')
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/mmengine/model/wrappers/distributed.py", line 161, in _run_forward
+    results = self(**data, mode=mode)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 1156, in forward
+    output = self._run_ddp_forward(*inputs, **kwargs)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 1110, in _run_ddp_forward
+    return module_to_run(*inputs[0], **kwargs[0])  # type: ignore[index]
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/data/zengzw/codes/mmdetection/mmdet/models/detectors/base.py", line 92, in forward
+    return self.loss(inputs, data_samples)
+  File "/data/zengzw/codes/mmdetection/mmdet/models/detectors/two_stage.py", line 190, in loss
+    roi_losses = self.roi_head.loss(x, rpn_results_list,
+  File "/data/zengzw/codes/mmdetection/mmdet/models/roi_heads/htc_roi_head.py", line 288, in loss
+    gt_semantic_segs = [
+  File "/data/zengzw/codes/mmdetection/mmdet/models/roi_heads/htc_roi_head.py", line 289, in <listcomp>
+    data_sample.gt_sem_seg.sem_seg
+  File "/data/zengzw/codes/mmdetection/mmdet/structures/det_data_sample.py", line 213, in gt_sem_seg
+    return self._gt_sem_seg
+AttributeError: 'DetDataSample' object has no attribute '_gt_sem_seg'
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 437108) of binary: /data/miniconda3/envs/openmmlab/bin/python
+Traceback (most recent call last):
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/distributed/launch.py", line 196, in <module>
+    main()
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/distributed/launch.py", line 192, in main
+    launch(args)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/distributed/launch.py", line 177, in launch
+    run(args)
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/data/miniconda3/envs/openmmlab/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+./tools/train.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-01-20_16:14:14
+  host      : ai-172-20-60-12
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 437109)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-01-20_16:14:14
+  host      : ai-172-20-60-12
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 437108)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+```
+
+Solutions: [1](https://github.com/open-mmlab/mmdetection/issues/10613)
 
 ### Testing
 
