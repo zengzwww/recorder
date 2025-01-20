@@ -6,18 +6,17 @@
 
 Build `configs/detectors/oilleak.py`:
 ```text
-_base_ = [
-    '../_base_/models/cascade-rcnn_r50_fpn.py',
-    '../_base_/datasets/coco_detection.py',
-    '../_base_/schedules/schedule_1x.py',
-    '../_base_/default_runtime.py'
-]
+_base_ = '../htc/htc_r50_fpn_1x_coco.py'
 
 ######################################################################
 
 _base_.model['roi_head']['bbox_head'][0]['num_classes'] = 6
 _base_.model['roi_head']['bbox_head'][1]['num_classes'] = 6
 _base_.model['roi_head']['bbox_head'][2]['num_classes'] = 6
+_base_.model['roi_head']['mask_head'][0]['num_classes'] = 6
+_base_.model['roi_head']['mask_head'][1]['num_classes'] = 6
+_base_.model['roi_head']['mask_head'][2]['num_classes'] = 6
+_base_.model['roi_head']['semantic_head']['num_classes'] = 6
 
 ######################################################################
 
@@ -27,12 +26,12 @@ data_root = '/data/zengzw/data/substation/oilleak/'
 _base_.train_dataloader['dataset']['metainfo'] = dict(classes=classes)
 _base_.train_dataloader['dataset']['data_root'] = data_root
 _base_.train_dataloader['dataset']['ann_file'] = 'annotations/train.json'
-_base_.train_dataloader['dataset']['data_prefix'] = dict(img='train/')
+_base_.train_dataloader['dataset']['data_prefix'] = dict(img='train/', seg='train_mask/')
 
 _base_.val_dataloader['dataset']['metainfo'] = dict(classes=classes)
 _base_.val_dataloader['dataset']['data_root'] = data_root
 _base_.val_dataloader['dataset']['ann_file'] = 'annotations/val.json'
-_base_.val_dataloader['dataset']['data_prefix'] = dict(img='val/')
+_base_.val_dataloader['dataset']['data_prefix'] = dict(img='val/', seg='val_mask/')
 
 _base_.val_evaluator['ann_file'] = data_root + 'annotations/val.json'
 
