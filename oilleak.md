@@ -2,12 +2,80 @@
 
 ## DetectorRS
 
-### Trainning
+### Training
 
+Build `configs/detectors/oilleak.py`:
+```text
+_base_ = [
+    '../_base_/models/cascade-rcnn_r50_fpn.py',
+    '../_base_/datasets/coco_detection.py',
+    '../_base_/schedules/schedule_1x.py',
+    '../_base_/default_runtime.py'
+]
+
+######################################################################
+
+_base_.model['roi_head']['bbox_head'][0]['num_classes'] = 6
+_base_.model['roi_head']['bbox_head'][1]['num_classes'] = 6
+_base_.model['roi_head']['bbox_head'][2]['num_classes'] = 6
+
+######################################################################
+
+classes = ('sly_bjbmyw', 'sly_bjbmyw_dry', 'sly_bjbmyw_susp', 'sly_dmyw', 'sly_dmyw_dry', 'sly_dmyw_susp')
+data_root = '/data/zengzw/data/substation/oilleak/'
+
+_base_.train_dataloader['dataset']['metainfo'] = dict(classes=classes)
+_base_.train_dataloader['dataset']['data_root'] = data_root
+_base_.train_dataloader['dataset']['ann_file'] = 'annotations/train.json'
+_base_.train_dataloader['dataset']['data_prefix'] = dict(img='train/')
+
+_base_.val_dataloader['dataset']['metainfo'] = dict(classes=classes)
+_base_.val_dataloader['dataset']['data_root'] = data_root
+_base_.val_dataloader['dataset']['ann_file'] = 'annotations/val.json'
+_base_.val_dataloader['dataset']['data_prefix'] = dict(img='val/')
+
+_base_.val_evaluator['ann_file'] = data_root + 'annotations/val.json'
+
+######################################################################
+
+load_from = '/data/zengzw/models/mmdetection/detectors_cascade_rcnn_r50_1x_coco-32a10ba0.pth'
+
+######################################################################
+
+model = dict(
+    backbone=dict(
+        type='DetectoRS_ResNet',
+        conv_cfg=dict(type='ConvAWS'),
+        sac=dict(type='SAC', use_deform=True),
+        stage_with_sac=(False, True, True, True),
+        output_img=True),
+    neck=dict(
+        type='RFP',
+        rfp_steps=2,
+        aspp_out_channels=64,
+        aspp_dilations=(1, 3, 6, 1),
+        rfp_backbone=dict(
+            rfp_inplanes=256,
+            type='DetectoRS_ResNet',
+            depth=50,
+            num_stages=4,
+            out_indices=(0, 1, 2, 3),
+            frozen_stages=1,
+            norm_cfg=dict(type='BN', requires_grad=True),
+            norm_eval=True,
+            conv_cfg=dict(type='ConvAWS'),
+            sac=dict(type='SAC', use_deform=True),
+            stage_with_sac=(False, True, True, True),
+            pretrained='torchvision://resnet50',
+            style='pytorch')))
+```
+
+Training:
 ```bash
 CUDA_VISIBLE_DEVICES=0,1 ./tools/dist_train.sh configs/detectors/oilleak.py 2 --work-dir ../../experiments/oilleak --auto-scale-lr
 ```
 
+Error:
 ```text
 Done (t=0.16s)
 creating index...
@@ -124,4 +192,4 @@ Root Cause (first observed failure):
 ============================================================
 ```
 
-解决办法见[1](https://github.com/open-mmlab/mmdetection/issues/10161)和[2](https://mmdetection.readthedocs.io/en/latest/advanced_guides/customize_dataset.html#modify-the-config-file-for-using-the-customized-dataset)
+Solutions: [1](https://github.com/open-mmlab/mmdetection/issues/10161) and [2](https://mmdetection.readthedocs.io/en/latest/advanced_guides/customize_dataset.html#modify-the-config-file-for-using-the-customized-dataset)
