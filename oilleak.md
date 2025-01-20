@@ -193,3 +193,9 @@ Root Cause (first observed failure):
 ```
 
 Solutions: [1](https://github.com/open-mmlab/mmdetection/issues/10161) and [2](https://mmdetection.readthedocs.io/en/latest/advanced_guides/customize_dataset.html#modify-the-config-file-for-using-the-customized-dataset)
+
+### Testing
+
+```bash
+python tools/test.py configs/detectors/oilleak.py ../../experiments/oilleak/epoch_12.pth --work-dir ../../experiments/oilleak --show-dir ./test --out ../../experiments/oilleak/test.pkl
+```
