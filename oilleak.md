@@ -2,6 +2,11 @@
 
 ## DetectorRS
 
+- HTC
+```text
+Cascade Mask R-CNN = Mask R-CNN +Cascade R-CNN，处理流程为，由RPN预测初始的矩形框，初始矩形框和CNN特征输入池化层，得到矩形框特征和遮罩特征，通过矩形框预测头和遮罩预测头预测本阶段的矩形框和遮罩，本阶段预测的矩形框可视为初始矩形框精细化的结果，继续将它和CNN特征一起输入下一阶段的池化层，得到下一阶段的矩形框特征和遮罩特征，然后按照同样的处理流程继续精细化矩形框预测和遮罩预测。这种方式结合了级联精细化的思想和矩形框预测和遮罩预测之间相互促进的优点，比Mask R-CNN和Cascade R-CNN的矩形框AP都要高。
+```
+
 ### Training
 
 Build `configs/detectors/oilleak.py`:
