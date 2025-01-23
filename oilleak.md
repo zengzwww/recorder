@@ -37,7 +37,14 @@
     ```text
     可切换空洞卷积，包括首尾两个全局上下文模块和中间的一个主模块。主模块有两个分支使用不同膨胀率的卷积，第三个平均池化分支起到切换的作用，主模块的输出为两个卷积结果的加权和。切换函数的输出取决于输入和空间位置，所以模型可以适应不同的尺度。两个卷积的权重一个为W另一个为w加德尔塔w，起加锁的效果，主要目的是为了用预训练模型的卷积参数来初始化膨胀率大于1的卷积核，这么做的一个粗略的假设是，不同尺度的物体可以通过同一权重在不同膨胀率模式下检测到。
     ```
-  - SSSS
+  - 总体架构
+    - Backbone: DetectoRS_ResNet
+    - Neck: RFP
+    - ROIHead: HybridTaskCascadeRoIHead
+      - BoxHead: Shared2FCBBoxHead x 3
+      - MaskHead: HTCMaskHead x 3
+      - SemanticHead: FusedSemanticHead
+    - RPNHead: RPNHead
 
 ### Training
 
