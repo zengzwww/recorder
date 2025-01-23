@@ -46,7 +46,27 @@
       - SemanticHead: FusedSemanticHead
     - RPNHead: RPNHead
 
-### Training
+## Env
+
+- mmdetection
+```bash
+conda create --name openmmlab python=3.8 -y
+conda activate openmmlab
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2
+pip install -U openmim
+mim install mmengine
+mim install "mmcv>=2.0.0rc4, <2.2.0"
+git clone https://github.com/open-mmlab/mmdetection.git
+cd mmdetection/
+pip install -v -e .
+```
+
+- mmdeploy
+```bash
+
+```
+
+## Training
 
 Build `configs/detectors/oilleak.py`:
 ```text
@@ -359,7 +379,7 @@ Root Cause (first observed failure):
 
 Solutions: [1](https://github.com/open-mmlab/mmdetection/issues/10613)
 
-### Testing
+## Testing
 
 ```bash
 python tools/test.py configs/detectors/oilleak.py ../../experiments/oilleak/epoch_12.pth --work-dir ../../experiments/oilleak --show-dir ./test --out ../../experiments/oilleak/test.pkl
