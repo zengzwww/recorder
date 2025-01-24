@@ -63,7 +63,9 @@ pip install -v -e .
 
 - mmdeploy
 ```bash
-
+git clone --recursive -b main https://github.com/open-mmlab/mmdeploy.git
+cd mmdeploy
+python tools/scripts/build_ubuntu_x64_torchscript2.py
 ```
 
 ## Training
