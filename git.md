@@ -116,3 +116,7 @@ git clone -c https.proxy="127.0.0.1:7890" https://github.com/0x90d/videoduplicat
 ## 修改历史commit的作者信息
 
 参考[这里](https://stackoverflow.com/questions/3042437/how-can-i-change-the-commit-author-for-a-single-commit)
+
+## 从指定的commit创建tag
+
+参考[这里](https://stackoverflow.com/questions/4404172/how-to-tag-an-older-commit-in-git)和[这里](https://stackoverflow.com/questions/4404172/how-to-tag-an-older-commit-in-git/21759466#21759466)
