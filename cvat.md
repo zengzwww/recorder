@@ -16,6 +16,10 @@ CVAT_HOST=www.aimall-cd.cn CVAT_VERSION=v2.9.0 docker compose up -d
 CVAT_HOST=172.20.40.13 CVAT_VERSION=v2.31.0 docker compose up -d
 ```
 
+```bash
+CVAT_HOST=172.20.40.13 CVAT_VERSION=v2.31.0 docker compose -f docker-compose.override.yml -f docker-compose.yml up -d
+```
+
 ```text
 http://172.20.40.13:8080/auth/login
 ```
