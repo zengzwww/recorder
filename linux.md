@@ -163,3 +163,11 @@ blacklist amd76x_edac
 blacklist nouveau
 options nouveau modeset=0
 ```
+
+## 开机自动挂载硬盘
+
+```text
+UUID=a6879c64-e7fc-4319-9e80-5749c0b1b429 /mnt/data ext4 defaults 1 1
+```
+
+see (here)[https://blog.csdn.net/mochou111/article/details/81298613]
