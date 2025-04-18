@@ -15,6 +15,8 @@ OPENCV_DIR=/usr/local/pkg/opencv/amd64 TORCH_DIR=/usr/local/pkg/libtorch/amd64/l
 
 kubectl -n sentry cp /home/industai/zengzw/codes/data/nc srv-ai-adapter--gpu-848b887759-hlc8k:/home
 kubectl -n sentry cp /home/industai/zengzw/codes/innoai/models/ srv-ai-adapter--gpu-848b887759-hlc8k:/home
+
+LD_LIBRARY_PATH=$(pwd)/../lib:$LD_LIBRARY_PATH ../bin/nd_demo --img_dir=/home/meter2 --save_dir=/home/meter2_nd/
 ```
 
 ## Make tag
