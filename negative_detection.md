@@ -6,6 +6,17 @@
 OPENCV_DIR=$(pwd)/../../3rdparty/opencv/amd64 TORCH_DIR=$(pwd)/../../3rdparty/libtorch/amd64/libtorch INFERENCE_DIR=$(pwd)/../../3rdparty/inference SPDLOG_DIR=$(pwd)/../../3rdparty/spdlog_header JSON_DIR=$(pwd)/../../3rdparty/json_header ZMQ_DIR=$(pwd)/../../3rdparty/libzmq cmake ../nd_lib/
 ```
 
+```bash
+kubectl -n sentry cp /home/industai/zengzw/codes/innoai/negative_detection srv-ai-adapter--gpu-848b887759-hlc8k:/home
+kubectl -n sentry cp /home/industai/zengzw/codes/innoai/3rdparty/json_header/ srv-ai-adapter--gpu-848b887759-hlc8k:/home
+kubectl -n sentry cp /home/industai/zengzw/codes/innoai/3rdparty/spdlog_header/ srv-ai-adapter--gpu-848b887759-hlc8k:/home
+
+OPENCV_DIR=/usr/local/pkg/opencv/amd64 TORCH_DIR=/usr/local/pkg/libtorch/amd64/libtorch INFERENCE_DIR=/usr/local/pkg/inference/amd64 ZMQ_DIR=/usr/local/pkg/libzmq/amd64 SPDLOG_DIR=$(pwd)/../../spdlog_header JSON_DIR=$(pwd)/../../json_header cmake ../nd_lib/
+
+kubectl -n sentry cp /home/industai/zengzw/codes/data/nc srv-ai-adapter--gpu-848b887759-hlc8k:/home
+kubectl -n sentry cp /home/industai/zengzw/codes/innoai/models/ srv-ai-adapter--gpu-848b887759-hlc8k:/home
+```
+
 ## Make tag
 
 ```bash
