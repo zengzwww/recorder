@@ -27,6 +27,13 @@ kubectl -n sentry cp /home/industai/zengzw/codes/3rdparty/spdlog_header/ srv-ai-
 kubectl -n sentry cp /home/industai/zengzw/codes/data srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
 kubectl -n sentry cp /home/industai/zengzw/codes/models/ srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
 LD_LIBRARY_PATH=$(pwd)/../lib:$LD_LIBRARY_PATH ../bin/nd_demo --img_dir=/home/meter2 --save_dir=/home/meter2_nd/
+
+/usr/local/pkg/engine_classification_glass/amd64/engine/TorchScript_CUDA/
+
+kubectl -n sentry cp /home/industai/zengzw/codes/models/classification-glass/TorchScript_CUDA/classification-glass-GPU.torchscript srv-ai-adapter--gpu-68566d7f4c-9ptpp:/usr/local/pkg/engine_classification_glass/amd64/engine/TorchScript_CUDA/
+kubectl -n sentry cp /home/industai/zengzw/codes/models/classification-shell/TorchScript_CUDA/classification-shell-GPU.torchscript srv-ai-adapter--gpu-68566d7f4c-9ptpp:/usr/local/pkg/engine_classification-shell/amd64/engine/TorchScript_CUDA/
+kubectl -n sentry cp /home/industai/zengzw/codes/models/classification-silibar/TorchScript_CUDA/classification-silibar-GPU.torchscript srv-ai-adapter--gpu-68566d7f4c-9ptpp:/usr/local/pkg/engine_classification-silibar/amd64/engine/TorchScript_CUDA/
+kubectl -n sentry cp /home/industai/zengzw/codes/models/classification-oilseal/TorchScript_CUDA/classification-oilseal-GPU.torchscript srv-ai-adapter--gpu-68566d7f4c-9ptpp:/usr/local/pkg/engine_classification-oilseal/amd64/engine/TorchScript_CUDA/
 ```
 
 ## Make tag
