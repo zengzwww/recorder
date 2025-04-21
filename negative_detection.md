@@ -26,6 +26,7 @@ kubectl -n sentry cp /home/industai/zengzw/codes/3rdparty/json_header/ srv-ai-ad
 kubectl -n sentry cp /home/industai/zengzw/codes/3rdparty/spdlog_header/ srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
 kubectl -n sentry cp /home/industai/zengzw/codes/data srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
 kubectl -n sentry cp /home/industai/zengzw/codes/models/ srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
+LD_LIBRARY_PATH=$(pwd)/../lib:$LD_LIBRARY_PATH ../bin/nd_demo --img_dir=/home/meter2 --save_dir=/home/meter2_nd/
 ```
 
 ## Make tag
