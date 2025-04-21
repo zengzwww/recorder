@@ -19,6 +19,15 @@ kubectl -n sentry cp /home/industai/zengzw/codes/innoai/models/ srv-ai-adapter--
 LD_LIBRARY_PATH=$(pwd)/../lib:$LD_LIBRARY_PATH ../bin/nd_demo --img_dir=/home/meter2 --save_dir=/home/meter2_nd/
 ```
 
+```bash
+sshfs industai@172.20.40.46:/mnt/data/zengzw/codes/innoai /home/industai/zengzw/codes/
+kubectl -n sentry cp /home/industai/zengzw/codes/negative_detection srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
+kubectl -n sentry cp /home/industai/zengzw/codes/3rdparty/json_header/ srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
+kubectl -n sentry cp /home/industai/zengzw/codes/3rdparty/spdlog_header/ srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
+kubectl -n sentry cp /home/industai/zengzw/codes/data srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
+kubectl -n sentry cp /home/industai/zengzw/codes/models/ srv-ai-adapter--gpu-68566d7f4c-9ptpp:/home
+```
+
 ## Make tag
 
 ```bash
